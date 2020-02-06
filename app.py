@@ -14,9 +14,18 @@ from flask import Flask, escape, request, render_template,url_for
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/',methods=['GET','POST'])
+def video_url_post():
+    video_url = request.form['video_url']
+    youtube = pt.YouTube(video_url)
+    video = youtube.streams.first()
+    video.download() 
+    return render_template('index.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
