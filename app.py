@@ -17,10 +17,11 @@ def video_url_post():
     try:
         youtube = pt.YouTube(video_url)
         video = youtube.streams.first()
-        video.download() 
-        return render_template('sucess.html')
+        video.downlod('C:\\Users\\rober') 
+        return render_template('index.html')
     except:
-        return render_template('failed.html')
+        print('failed')
+        return render_template('index.html')
 
 
 if __name__ == "__main__":
