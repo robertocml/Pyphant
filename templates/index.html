@@ -47,6 +47,26 @@
                 </style>
 </head>
 <body>
+
+    <script>
+        $(document).ready(function() {
+       $('#DescargarBtn').click(function(){
+           var word = $('#word').val();
+           $.ajax({
+           url: "/get_word",
+           type: "get",
+           data: {word: word},
+           success: function(response) {
+           $("#wordResult").html(response.html);
+          },
+          error: function(xhr) {
+            //Do Something to handle error
+         }
+         });
+       });
+    });
+    </script>
+
     <p style="text-align:center;">
         <img src="{{url_for('static', filename='logo.jpg')}}" alt="Logo" width="556"
             height="313">
@@ -54,10 +74,10 @@
 
 
     <form method="POST">
-        <input type="text" name="video_url" placeholder="Ingresa la URL del video..">
+        <input type="text" name="video_url" placeholder="Ingresa la URL del video de Youtube..">
         
         <p style="text-align:center;">
-            <button type="submit" class="btn">Descargar <i class="fa fa-arrow-down" aria-hidden="true"></i> </button>
+            <button id="DescargarBtn" type="submit" class="btn">Descargar <i class="fa fa-arrow-down" aria-hidden="true"></i> </button>
         </p>
     </form>
 

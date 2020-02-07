@@ -23,7 +23,7 @@ def video_url_post():
         return send_from_directory(directory='uploads', filename=filename, as_attachment=True)
     except:
         print('failed')
-        return render_template('index.html')
+        return render_template('failed.html')
 
 
 if __name__ == "__main__":
